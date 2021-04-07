@@ -1,7 +1,10 @@
 <template>
 <div class="container md-auto sm:center">
  
-        <button class="bt_adicionar_projeto" @click="abrirModal">Adicionar Projeto</button>
+        <!-- <button class="bt_adicionar_projeto" @click="abrirModal">Adicionar Projeto</button> -->
+        <inertia-link href="/adicionar">
+          <button class="bt_adicionar_projeto">Cadastrar Projeto</button>
+        </inertia-link>
 </div>
 
     

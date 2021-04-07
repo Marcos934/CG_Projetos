@@ -1,16 +1,8 @@
 <template>
-  <div class="modal-backdrop">
-    <div class="modal">
-      <header class="modal-header">
-        <div v-if="dados">Editando: {{ dados.name }}</div>
-        <div v-else>Adicinando novo projeto</div>
-        <button type="button" class="btn-close" @click="fechar">x</button>
-      </header>
-
-      <section class="modal-body">
+        <section class="form-body">
         <div v-if="dados">Editando dados</div>
         <div v-else>
-          <form class="formProjeto">
+          <form class="formProjeto" @submit.prevent="submit">
             <label for="nome">Nome do Projeto: </label>
             <input type="text" id="nome" v-model="form.nomeProjeto" />
             <div>
@@ -22,9 +14,10 @@
             </div>
             <label for="dtValor">Valor do Projeto: </label>
             <input
-              type="text"
+              type="number"
               id="dtValor"
               v-model="form.valor"
+              @change="verificadorPositivo"
               placeholder="250000,50"
             />
 
@@ -40,25 +33,19 @@
             <input
               type="text"
               id="participantes"
-              v-model="participantes"
+              v-model="form.participantes"
               placeholder="Fulano; Sicano; Beltrano"
             />
           </form>
-          <button> Simular investimento</button>
         </div>
       </section>
-
-      <footer class="modal-footer">
-        <slot name="footer"> </slot>
-        <button type="button" class="btn-cinza-fechar" @click="fechar">
-          Fechar
-        </button>
-        <button type="button" class="btn-azul-enviar" @click="fechar">
-          Enviar
+       <footer class="form-footer">
+        <button type="submit" class="btn-azul-enviar" @click="submit">
+          Cadastrar
         </button>
       </footer>
-    </div>
-  </div>
+
+  
 </template>
 <script>
 import Input from "../../Jetstream/Input.vue";
@@ -71,23 +58,35 @@ export default {
   data() {
     return {
       form: {
-        nome: null,
+        nomeProjeto: null,
+        dataInicio: null,
+        dataFim: null,
         valor: "0,00",
         risco: "",
+        participantes: null
       },
     };
   },
 
-  methods: {
-    fechar() {
-      this.$emit("close");
-    },
-  },
+    methods: {
+        submit() {
+        this.$inertia.post('/adicionar', this.form)
+        },
+        verificadorPositivo(){
+            if(parseFloat(this.form.valor)<0){
+                alert("Valor do Projeto não deve ser menor que: 0")
+                this.form.valor = '0,00'
+            }
+        }
+    }
+
+
+  
 };
 </script>
 
 <style>
-.modal-backdrop {
+.form-backdrop {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -100,7 +99,7 @@ export default {
   z-index: 3;
 }
 
-.modal {
+.form {
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
@@ -109,14 +108,14 @@ export default {
   width: 45rem;
 }
 
-.modal-header,
-.modal-footer {
+.form-header,
+.form-footer {
   padding: 15px;
   display: flex;
   flex-direction: row;
 }
 
-.modal-header {
+.form-header {
   position: relative;
   border-bottom: 1px solid #eeeeee;
   font-weight: 600;
@@ -124,7 +123,7 @@ export default {
   justify-content: space-between;
 }
 
-.modal-footer {
+.form-footer {
   border-top: 1px solid #eeeeee;
   justify-content: flex-end;
   align-items: center;
@@ -132,7 +131,7 @@ export default {
   flex-direction: row;
 }
 
-.modal-body {
+.form-body {
   position: relative;
   padding: 1rem 1rem;
 }
@@ -150,14 +149,6 @@ export default {
   background: transparent;
 }
 
-.btn-cinza-fechar {
-  color: rgb(0, 0, 0);
-  background: #dfdfdf;
-  border: 1px solid #dfdfdf;
-  padding: 0.3rem;
-  border-radius: 2px;
-  margin-right: 0.5rem;
-}
 
 .btn-azul-enviar {
   color: rgb(255, 255, 255);
@@ -166,6 +157,7 @@ export default {
   padding: 0.3rem;
   border-radius: 2px;
   margin-right: 1rem;
+  
 }
 
 .formProjeto > input,

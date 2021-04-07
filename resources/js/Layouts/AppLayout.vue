@@ -223,7 +223,7 @@
 
             <!-- Page Content -->
             <main>
-                <slot></slot>
+                <slot name="body"></slot>
             </main>
         </div>
     </div>

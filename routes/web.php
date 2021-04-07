@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\{
     HomeController,
     Dashboard,
+    GerenciarProjetoController
 };
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::get('/', function () {
 });
 
 Route::get('/home',[HomeController::Class, 'index']);
+Route::get('/adicionar',[GerenciarProjetoController::Class, 'cadastrarProjeto'])->name('adicionar');
+Route::post('/adicionar',[GerenciarProjetoController::Class, 'efetuarCadastro'])->name('adicionarForm');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [Dashboard::Class, 'index']
 )->name('dashboard');
