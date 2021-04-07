@@ -1,4 +1,4 @@
-<template>
+d<template>
   <app-layout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -23,23 +23,20 @@
                 <th>Ação</th>
             </tr>
         </thead>
+
+        
         <tbody>
-            <tr>
-                <td>Apollo</td>
-                <td>21/04/2021</td>
+      
+            <tr v-bind="index" v-for="(dado, index) in dados" :key="dado.id"> 
+                <td>{{dados[index].nome }}</td>
+                <td>{{dados[index].valor }}</td>
                 <td>21/04/2025</td>
                 <td>61.000,00</td>
                 <td>20%</td>
                 <td>Editar / Excluir</td>
             </tr>
-             <tr>
-                <td>Apollo 2</td>
-                <td>21/04/2021</td>
-                <td>21/04/2025</td>
-                <td>5.000,00</td>
-                <td>5%</td>
-                <td>Editar / Excluir</td>
-            </tr>
+            
+            
         </tbody>
         <tfoot>
             <tr>
@@ -53,6 +50,8 @@
         </tfoot>
     </table>
           
+
+
 
         </div>
       </div>
@@ -69,6 +68,16 @@ export default {
     AppLayout,
     BotaoAdicionarProjeto,
   },
+  
+  props:{
+    dados: Object
+  },
+  data(){
+    return{
+      index: null,
+    }
+  }
+  
 };
 
 
