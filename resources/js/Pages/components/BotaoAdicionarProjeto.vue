@@ -1,25 +1,37 @@
 <template>
 <div class="container md-auto sm:center">
-        <button class="bt_adicionar_projeto" @click="contador">Adicionar Projeto {{count}}</button>
+ 
+        <button class="bt_adicionar_projeto" @click="abrirModal">Adicionar Projeto</button>
 </div>
 
     
+
+    <ModalFormProjeto
+      v-show="isModalMostrar"
+      @close="fecharModal"
+    />
+
 </template>
 <script>
 import Button from '../../Jetstream/Button.vue'
+import ModalFormProjeto from  "@/Pages/components/ModalFormProjeto";
 
 
 export default {
-  components: { Button },
+  components: { Button, ModalFormProjeto},
   
   data(){
     return {
       count: 0,
+      isModalMostrar: false,
       }
   },
   methods:{
-    contador(){
-      return this.count++
+     abrirModal() {
+        this.isModalMostrar= true;
+      },
+      fecharModal() {
+      this.isModalMostrar = false;
     }
   }
    
