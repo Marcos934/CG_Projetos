@@ -29,7 +29,7 @@ d<template>
       
             <tr v-bind="index" v-for="(dado, index) in dados" :key="dado.id"> 
                 <td>{{dados[index].nome }}</td>
-                <td>{{dados[index].valor }}</td>
+                <td>{{dados[index].datainicio }}</td>
                 <td>21/04/2025</td>
                 <td>61.000,00</td>
                 <td>20%</td>
