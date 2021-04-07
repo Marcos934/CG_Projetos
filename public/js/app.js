@@ -23184,7 +23184,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.bt_adicionar_projeto{\n    \n    width: 15rem;\n    text-align: center;\n    padding: 1rem 1rem;\n    border: 0.1rem solid white;\n    color: white;\n    border-radius: 0.5rem;\n    background-color:#6875F5;\n    font-size: 1rem;\n    transition-duration: 0.5s;\n    margin-left: 0.5rem;\n    outline: none;\n    margin-bottom: 1rem;\n}\n.bt_adicionar_projeto:hover{\n    background-color:#3b4bda;\n    outline: none;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.bt_adicionar_projeto{\r\n    \r\n    width: 15rem;\r\n    text-align: center;\r\n    padding: 1rem 1rem;\r\n    border: 0.1rem solid white;\r\n    color: white;\r\n    border-radius: 0.5rem;\r\n    background-color:#6875F5;\r\n    font-size: 1rem;\r\n    transition-duration: 0.5s;\r\n    margin-left: 0.5rem;\r\n    outline: none;\r\n    margin-bottom: 1rem;\n}\n.bt_adicionar_projeto:hover{\r\n    background-color:#3b4bda;\r\n    outline: none;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
