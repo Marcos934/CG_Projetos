@@ -1,62 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Sistema desenvolvido em arquitetura de monólito com UX de SPA, utilizado as seguintes tecnologias:
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Linguagens:** PHP 8 (Back-end) e JavaScript (Front-End)
 
-## About Laravel
+**Frameworks:** Laravel 8, Bootstrap e Vue.js
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Além de outras tecnologias que auxiliam no desenvolvimento, como:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Datatables**, **Moment** e **Jetstream**.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O sistema usa como tecnologia de roteamento fornecido pelo Laravel através do Inertia.js, sendo assim capaz de ser um sistema sem necessidade de API, pois o back-end da aplicação está ligado diretamente ao sistema de front-end, fazendo assim com que a experiência de UX e desempenho seja otimizada para o usuário. 
 
-## Learning Laravel
+## Instruções de testes
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Requisitos:** PHP > 7.4 e Node instalado na máquina.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Após fazer o clone, o avaliador têm 2 opções de banco de dados para testes, pois o sistema possui Eloquent ORM sendo compatível com os principais bancos de dados.
 
-## Laravel Sponsors
+**Opção MYSQL:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Basta criar um banco de dados:
 
-### Premium Partners
+    ```sql
+    CREATE SCHEMA `cg_projetos` DEFAULT CHARACTER SET utf8 ;
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+- Criado o banco de dados faça conexão no arquivo .env e modifique a sessão abaixo:
 
-## Contributing
+    ```php
+    DB_CONNECTION=mysql
+    DB_HOST= seu_host
+    DB_PORT=3306
+    DB_DATABASE=db_cgprojetos
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Após modificação no arquivo basta escrever no terminal dentro da pasta do projeto:
 
-## Code of Conduct
+    ```php
+    php artisan migration
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Pronto, a conexão e o banco de dados estão OK, agora para acessar a aplicação basta rodar o código abaixo no terminal:
 
-## Security Vulnerabilities
+    ```php
+    php artisan serve
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Aplicação pronta para uso.
 
-## License
+**Opção SQLITE:**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- O arquivo **database.sqlite** já está pronto, você só precisa configurar o **.env** da seguinte forma:
+
+    ```php
+    DB_CONNECTION=sqlite
+    #DB_HOST= seu_host
+    #DB_PORT=3306
+    #DB_DATABASE=db_cgprojetos
+    #DB_USERNAME=root
+    #DB_PASSWORD=
+    ```
+
+- Após modificação no arquivo basta escrever no terminal dentro da pasta do projeto:
+
+    ```php
+    php artisan migration
+    ```
+
+- Pronto, a conexão e o banco de dados estão OK, agora para acessar a aplicação basta rodar o código abaixo no terminal:
+
+    ```php
+    php artisan serve
+    ```
+
+- Aplicação pronta para uso.
+
+**OBS.:** Caso o sistema não funcione após esses procedimentos, considere o seguinte código em seu terminal: 
+
+```php
+npm run dev
+//ou
+npm run prod
+//ou
+npm run watch
+```
+
+O sistema segue padrão MVC - Model View Controller, com designer pattern de factory em estrutura nativa para banco de dados.
