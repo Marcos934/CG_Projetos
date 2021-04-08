@@ -9,7 +9,7 @@
         
         <script type="text/javascript" src="js/recursosDatatables/datatables.min.js"></script>
         
-        <title>{{ config('app.name', 'Gerenciador de Projetos') }}</title>
+        <title>{{ config('app.name', 'CG_Projetos') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
