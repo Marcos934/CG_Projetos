@@ -21,6 +21,7 @@ class GerenciarProjetoController extends Controller
            'dataFim' => ['required'], 
            'valor' => ['required'], 
            'risco' => ['required'], 
+           'participantes'=> ['required'],
         ]);
      
 

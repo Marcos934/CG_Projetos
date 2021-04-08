@@ -3,7 +3,7 @@
         <div>
           <form class="formProjeto" @submit.prevent="submit">
             <label for="nome">Nome do Projeto: </label>
-            <input type="text" id="nome" v-model="form.nomeProjeto"  required />
+            <input type="text" id="nome" name="nome" v-model="form.nomeProjeto"  required />
             <div>
               <label for="dtInicio">Data de inicio: </label>
               <input type="date" id="dtInicio" v-model="form.dataInicio"  required />

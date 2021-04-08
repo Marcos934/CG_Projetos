@@ -17,7 +17,7 @@ import Button from '../../Jetstream/Button.vue'
 
 
 export default {
-  components: { Button, ModalFormProjeto},
+  components: { Button},
   
   data(){
     return {
