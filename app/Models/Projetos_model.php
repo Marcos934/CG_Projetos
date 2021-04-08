@@ -37,6 +37,11 @@ class Projetos_model extends Model
         ->get();
     }
 
+    public function excluirProjeto($id){
+        DB::table('projetos')
+        ->where('id_projeto', '=', $id)->delete();
+    }
+
     
 
     

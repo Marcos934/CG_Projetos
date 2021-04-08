@@ -31,6 +31,8 @@ Route::get('/', function () {
 Route::get('/home',[HomeController::Class, 'index']);
 Route::get('/adicionar',[GerenciarProjetoController::Class, 'cadastrarProjeto'])->name('adicionar');
 Route::post('/adicionar',[GerenciarProjetoController::Class, 'efetuarCadastro'])->name('adicionarForm');
+Route::delete('/excluirProjeto/{id_projeto}',[GerenciarProjetoController::Class, 'excluirProjeto'])->name('excluirProjeto');
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [Dashboard::Class, 'index']

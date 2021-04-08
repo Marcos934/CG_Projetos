@@ -44,7 +44,7 @@
                   <td>{{ dados[index].risco }}</td>
                   <td>
                     <button class="btn-acao editar">Editar</button>
-                    <button class="btn-acao excluir">Excluir</button>
+                    <button @click="alertaExcluir(dados[index].nome,  dados[index].id_projeto)" class="btn-acao excluir">Excluir</button>
                     <button class="btn-acao sInvestimento">
                       Simular investimento
                     </button>
@@ -99,6 +99,14 @@ export default {
       let data_formatada = this.data[index].data_fim;
       return moment(data_formatada).format("L");
     },
+    alertaExcluir(nomeProjeto, id_projeto){
+       if(confirm("Você deseja realmente excluir "+nomeProjeto+" ?")){
+                
+        this.$inertia.delete(`/excluirProjeto/${id_projeto}`,  id_projeto)
+       
+       }
+      
+    }
   },
 };
 
@@ -128,13 +136,13 @@ $(document).ready(function () {
 }
 
 .btn-acao {
-  width: 3.7rem;
+  width: 4rem;
   text-align: center;
   padding: 0.4rem 0.4rem;
   border: 0.1rem solid white;
   color: white;
   border-radius: 0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   transition-duration: 0.8s;
   outline: none;
 }
@@ -153,6 +161,6 @@ $(document).ready(function () {
 }
 .sInvestimento {
   background-color: rgb(1, 143, 13);
-  width: 8.5rem;
+  width: 9rem;
 }
 </style>

@@ -5,7 +5,7 @@
                 Profile
             </h2>
         </template>
-
+    <template #body>
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div v-if="$page.props.jetstream.canUpdateProfileInformation">
@@ -35,6 +35,7 @@
                 </template>
             </div>
         </div>
+    </template>
     </app-layout>
 </template>
 

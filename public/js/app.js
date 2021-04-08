@@ -17933,6 +17933,11 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
     formatarDataFim: function formatarDataFim(index) {
       var data_formatada = this.data[index].data_fim;
       return moment(data_formatada).format("L");
+    },
+    alertaExcluir: function alertaExcluir(nomeProjeto, id_projeto) {
+      if (confirm("Você deseja realmente excluir " + nomeProjeto + " ?")) {
+        this.$inertia["delete"]("/excluirProjeto/".concat(id_projeto), id_projeto);
+      }
     }
   }
 });
@@ -21744,17 +21749,19 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 /* HOISTED */
 );
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
   "class": "btn-acao editar"
-}, "Editar"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "class": "btn-acao excluir"
-}, "Excluir"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "class": "btn-acao sInvestimento"
-}, " Simular investimento ")], -1
+}, "Editar", -1
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tfoot", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Nome"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Data Inicio"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Data Fim"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Valor"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Risco"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Ação")])], -1
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  "class": "btn-acao sInvestimento"
+}, " Simular investimento ", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tfoot", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Nome"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Data Inicio"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Data Fim"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Valor"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Risco"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "Ação")])], -1
 /* HOISTED */
 );
 
@@ -21783,12 +21790,19 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.dados[index].risco), 1
         /* TEXT */
-        ), _hoisted_8], 16
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+          onClick: function onClick($event) {
+            return $options.alertaExcluir($props.dados[index].nome, $props.dados[index].id_projeto);
+          },
+          "class": "btn-acao excluir"
+        }, "Excluir", 8
+        /* PROPS */
+        , ["onClick"]), _hoisted_9])], 16
         /* FULL_PROPS */
         );
       }), 128
       /* KEYED_FRAGMENT */
-      ))]), _hoisted_9])])])])];
+      ))]), _hoisted_10])])])])];
     }),
     _: 1
     /* STABLE */
@@ -22302,7 +22316,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_1];
     }),
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+    body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [_ctx.$page.props.jetstream.canUpdateProfileInformation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_update_profile_information_form, {
         user: _ctx.$page.props.user
       }, null, 8
@@ -23780,7 +23794,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.ajustePadding[data-v-097ba13b] {\r\n  padding: 1rem;\n}\n.btn-acao[data-v-097ba13b] {\r\n  width: 3.7rem;\r\n  text-align: center;\r\n  padding: 0.4rem 0.4rem;\r\n  border: 0.1rem solid white;\r\n  color: white;\r\n  border-radius: 0.5rem;\r\n  font-size: 0.8rem;\r\n  transition-duration: 0.8s;\r\n  outline: none;\n}\n.btn-acao[data-v-097ba13b]:hover {\r\n  background-color: white;\r\n  border-color: black;\r\n  color: black;\n}\n.excluir[data-v-097ba13b] {\r\n  background-color: rgb(199, 31, 53);\n}\n.editar[data-v-097ba13b] {\r\n  background-color: rgb(31, 136, 136);\n}\n.sInvestimento[data-v-097ba13b] {\r\n  background-color: rgb(1, 143, 13);\r\n  width: 8.5rem;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.ajustePadding[data-v-097ba13b] {\r\n  padding: 1rem;\n}\n.btn-acao[data-v-097ba13b] {\r\n  width: 4rem;\r\n  text-align: center;\r\n  padding: 0.4rem 0.4rem;\r\n  border: 0.1rem solid white;\r\n  color: white;\r\n  border-radius: 0.5rem;\r\n  font-size: 0.85rem;\r\n  transition-duration: 0.8s;\r\n  outline: none;\n}\n.btn-acao[data-v-097ba13b]:hover {\r\n  background-color: white;\r\n  border-color: black;\r\n  color: black;\n}\n.excluir[data-v-097ba13b] {\r\n  background-color: rgb(199, 31, 53);\n}\n.editar[data-v-097ba13b] {\r\n  background-color: rgb(31, 136, 136);\n}\n.sInvestimento[data-v-097ba13b] {\r\n  background-color: rgb(1, 143, 13);\r\n  width: 9rem;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

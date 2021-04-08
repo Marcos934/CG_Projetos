@@ -39,4 +39,10 @@ class GerenciarProjetoController extends Controller
         
       
     }
+
+    public function excluirProjeto(Request $request){
+        $projeto_model = new Projetos_model;
+        $projeto_model->excluirProjeto($request->id_projeto);
+        return Redirect::route('dashboard');
+    }
 }
