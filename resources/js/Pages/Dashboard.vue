@@ -32,10 +32,10 @@
                   :key="dado.id"
                 >
                   <td>{{ dados[index].nome }}</td>
-                  <td>{{ dados[index].datainicio }}</td>
-                  <td>21/04/2025</td>
-                  <td>61.000,00</td>
-                  <td>20%</td>
+                  <td>{{ formatarDataIncio(index)}}</td>
+                  <td>{{ formatarDataFim(index) }}</td>
+                  <td>{{ dados[index].valor }}</td>
+                  <td>{{ dados[index].valor }}</td>
                   <td>Editar / Excluir</td>
                 </tr>
               </tbody>
@@ -60,24 +60,40 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import BotaoAdicionarProjeto from "@/Pages/components/BotaoAdicionarProjeto";
+var moment = require('moment');
 
 export default {
+
   components: {
     AppLayout,
     BotaoAdicionarProjeto,
   },
 
   props: {
-    dados: Object,
+    dados: Array,
   },
   data() {
     return {
       index: null,
+      data: this.dados
     };
   },
+  methods:{
+    formatarDataIncio(index){
+      let data_formatada =  this.data[index].data_inicio;
+      return moment(data_formatada).format("L"); 
+    },
+    formatarDataFim(index){
+      let data_formatada =  this.data[index].data_fim;
+      return moment(data_formatada).format("L"); 
+    }
+
+  }
 };
 
+
 $(document).ready(function () {
+ 
   $("#listagem").DataTable({
     scrollY: true,
     scrollX: true,
