@@ -43,9 +43,9 @@
                   <td>{{ dados[index].valor }}</td>
                   <td>{{ dados[index].risco }}</td>
                   <td>
-                    <button class="btn-acao editar">Editar</button>
+                    <button @click="abrirModal()" class="btn-acao editar">Editar</button>
                     <button @click="alertaExcluir(dados[index].nome,  dados[index].id_projeto)" class="btn-acao excluir">Excluir</button>
-                    <button class="btn-acao sInvestimento">
+                    <button @click="abrirModalSimula(dados[index])"  class="btn-acao sInvestimento">
                       Simular investimento
                     </button>
                   </td>
@@ -65,6 +65,18 @@
           </div>
         </div>
       </div>
+
+ <ModalFormProjeto
+      v-show="isModalMostrar"
+      @close="fecharModal"
+    />
+      
+<ModalSimulaInvestimento
+ 
+      v-show="isModalSimula"
+      @close="fecharModalSimula"
+      :infSimulacaoProjeto= "infSimulacaoProjeto"
+    />
     </template>
   </app-layout>
 </template>
@@ -72,6 +84,8 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import BotaoAdicionarProjeto from "@/Pages/components/BotaoAdicionarProjeto";
+import ModalFormProjeto from  "@/Pages/components/ModalFormProjeto";
+import ModalSimulaInvestimento from  "@/Pages/components/ModalSimulaInvestimento";
 
 var moment = require("moment");
 
@@ -79,6 +93,8 @@ export default {
   components: {
     AppLayout,
     BotaoAdicionarProjeto,
+    ModalFormProjeto,
+    ModalSimulaInvestimento,
   },
 
   props: {
@@ -88,6 +104,9 @@ export default {
     return {
       index: null,
       data: this.dados,
+      isModalMostrar: false,
+      isModalSimula: false,
+      infSimulacaoProjeto: '123',
     };
   },
   methods: {
@@ -106,7 +125,22 @@ export default {
        
        }
       
-    }
+    },
+     abrirModal() {
+        this.isModalMostrar= true
+      },
+      fecharModal() {
+      this.isModalMostrar = false
+      },
+      abrirModalSimula(dados) {
+        this.isModalSimula= true
+        this.infSimulacaoProjeto = dados
+
+      },
+      fecharModalSimula() {
+      this.isModalSimula = false
+      },
+     
   },
 };
 
@@ -138,11 +172,11 @@ $(document).ready(function () {
 .btn-acao {
   width: 4rem;
   text-align: center;
-  padding: 0.4rem 0.4rem;
+  padding: 0.3rem 0.2rem;
   border: 0.1rem solid white;
   color: white;
   border-radius: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.77rem;
   transition-duration: 0.8s;
   outline: none;
 }
@@ -161,6 +195,6 @@ $(document).ready(function () {
 }
 .sInvestimento {
   background-color: rgb(1, 143, 13);
-  width: 9rem;
+  width: auto;
 }
 </style>
