@@ -1,6 +1,11 @@
 <template>
+
   <app-layout>
+    
     <template #header>
+        
+      <link rel="stylesheet" type="text/css" href="../js/recursosDatatables/datatables.min.css"/> 
+      
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         Dashboard
       </h2>
@@ -9,7 +14,7 @@
     <template #body>
       <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <BotaoAdicionarProjeto />
+          <BotaoAdicionarProjeto/>
           <div
             class="bg-white overflow-hidden shadow-xl sm:rounded-sm ajustePadding"
           >
@@ -35,8 +40,8 @@
                   <td>{{ formatarDataIncio(index)}}</td>
                   <td>{{ formatarDataFim(index) }}</td>
                   <td>{{ dados[index].valor }}</td>
-                  <td>{{ dados[index].valor }}</td>
-                  <td>Editar / Excluir</td>
+                  <td>{{ dados[index].risco }}</td>
+                  <td>Editar / Excluir / Calcular Risco</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -56,8 +61,10 @@
     </template>
   </app-layout>
 </template>
-
+ 
 <script>
+
+
 import AppLayout from "@/Layouts/AppLayout";
 import BotaoAdicionarProjeto from "@/Pages/components/BotaoAdicionarProjeto";
 var moment = require('moment');
