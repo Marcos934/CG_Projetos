@@ -42,6 +42,19 @@ class Projetos_model extends Model
         ->where('id_projeto', '=', $id)->delete();
     }
 
+    public function editarProjeto($id, $nomeProjeto, $dataInicio, $dataFim, $valor, $risco, $participantes){
+        DB::table('projetos')
+        ->where('id_projeto', $id)
+        ->update([
+            'nome' => $nomeProjeto, 
+            'data_inicio' => $dataInicio,
+            'data_fim' => $dataFim,
+            'valor' => $valor,
+            'risco' =>  $risco,
+            'participantes' => $participantes
+        ]);
+    }
+
     
 
     

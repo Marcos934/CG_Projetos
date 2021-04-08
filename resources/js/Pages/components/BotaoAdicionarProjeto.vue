@@ -9,15 +9,11 @@
 
     
 
-    <ModalFormProjeto
-      v-show="isModalMostrar"
-      @close="fecharModal"
-    />
 
 </template>
 <script>
 import Button from '../../Jetstream/Button.vue'
-import ModalFormProjeto from  "@/Pages/components/ModalFormProjeto";
+
 
 
 export default {
@@ -30,12 +26,7 @@ export default {
       }
   },
   methods:{
-     abrirModal() {
-        this.isModalMostrar= true;
-      },
-      fecharModal() {
-      this.isModalMostrar = false;
-    }
+    
   }
    
 }

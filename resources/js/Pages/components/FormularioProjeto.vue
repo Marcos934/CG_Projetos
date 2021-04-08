@@ -1,16 +1,15 @@
 <template>
         <section class="form-body">
-        <div v-if="dados">Editando dados</div>
-        <div v-else>
+        <div>
           <form class="formProjeto" @submit.prevent="submit">
             <label for="nome">Nome do Projeto: </label>
-            <input type="text" id="nome" v-model="form.nomeProjeto" />
+            <input type="text" id="nome" v-model="form.nomeProjeto"  required />
             <div>
               <label for="dtInicio">Data de inicio: </label>
-              <input type="date" id="dtInicio" v-model="form.dataInicio" />
+              <input type="date" id="dtInicio" v-model="form.dataInicio"  required />
 
               <label for="dtFim">Data de término: </label>
-              <input type="date" id="dtFim" v-model="form.dataFim" />
+              <input type="date" id="dtFim" v-model="form.dataFim"  required />
             </div>
             <label for="dtValor">Valor do Projeto: </label>
             <input
@@ -19,14 +18,17 @@
               v-model="form.valor"
               @change="verificadorPositivo"
               placeholder="250000,50"
+               required
             />
 
             <label for="risco">Risco: </label>
-            <select  @change="form.risco = $event.target.value">
-              <option disabled selected >Escolha</option>
+            <select  @change="form.risco = $event.target.value"  required>
+              <option  v-if="autoPreencher" selected >{{autoPreencher.risco}}</option>
+              <option  v-else selected >Escolha</option>
               <option value="0">0 - (Baixo)</option>
               <option value="1">1 - (Médio)</option>
               <option value="2">2 - (Alto)</option>
+              
             </select>
  
             <label for="participantes">Participantes: </label>
@@ -35,30 +37,43 @@
               id="participantes"
               v-model="form.participantes"
               placeholder="Fulano; Sicano; Beltrano"
+              required
             />
           </form>
         </div>
       </section>
-       <footer class="form-footer">
-        <button type="submit" class="btn-azul-enviar" @click="submit">
+
+
+
+     <footer class="form-footer">
+
+        <button v-if="autoPreencher" type="submit" class="btn-azul-enviar" @click="submitEditar">
+          Editar
+        </button>
+
+        <button v-else type="submit" class="btn-azul-enviar" @click="submitCadastro">
           Cadastrar
         </button>
+      
       </footer>
 
   
 </template>
 <script>
+
 import Input from "../../Jetstream/Input.vue";
 export default {
   components: { Input },
   props: {
     dados: String,
+    autoPreencher: Object,
   },
 
   data() {
     return {
       form: {
-        nomeProjeto: null,
+        id: null,
+        nomeProjeto:  null,
         dataInicio: null,
         dataFim: null,
         valor: "0,00",
@@ -67,17 +82,38 @@ export default {
       },
     };
   },
+  created: function(){
+    this.atribuirAutoPreenchimento();
+  },
 
     methods: {
-        submit() {
+      atribuirAutoPreenchimento(){
+        if(typeof this.autoPreencher === 'undefined'){
+          console.log("vazio")
+        }else{
+          this.form.id = this.autoPreencher.id_projeto
+          this.form.nomeProjeto = this.autoPreencher.nome
+          this.form.dataInicio = this.autoPreencher.data_inicio
+          this.form.dataFim = this.autoPreencher.data_fim
+          this.form.valor = this.autoPreencher.valor
+          this.form.risco = this.autoPreencher.risco
+          this.form.participantes = this.autoPreencher.participantes
+        }
+      },
+        submitCadastro() {
         this.$inertia.post('/adicionar', this.form)
+        },
+        submitEditar() {
+        this.$inertia.post('/efetivarEdicao', this.form)
         },
         verificadorPositivo(){
             if(parseFloat(this.form.valor)<0){
                 alert("Valor do Projeto não deve ser menor que: 0")
                 this.form.valor = '0,00'
             }
-        }
+        },
+    
+
     }
 
 

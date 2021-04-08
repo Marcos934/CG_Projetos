@@ -45,4 +45,29 @@ class GerenciarProjetoController extends Controller
         $projeto_model->excluirProjeto($request->id_projeto);
         return Redirect::route('dashboard');
     }
+
+
+    public function editarProjeto(Request $request){
+        
+        return Inertia::render('CadastrarProjeto', [
+            "dadosEditar" =>  $request->all()
+        ]);
+
+    }
+
+    public function efetivarEdicao(Request $request){
+        $projeto_model = new Projetos_model;
+        $projeto_model->editarProjeto(
+            $request->id, 
+            $request->nomeProjeto, 
+            $request->dataInicio, 
+            $request->dataFim, 
+            $request->valor, 
+            $request->risco, 
+            $request->participantes
+        );
+    
+        return Redirect::route('dashboard');
+    }
+
 }

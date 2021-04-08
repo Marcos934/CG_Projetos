@@ -20,7 +20,7 @@ class CreateProjetosTable extends Migration
             $table->date('data_fim');
             $table->double('valor', 11, 2);
             $table->integer('risco');
-            $table->string('participantes', 120)->nullable();
+            $table->string('participantes', 120);
       
         });
     }
