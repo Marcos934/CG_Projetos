@@ -1,11 +1,12 @@
 <template>
-
   <app-layout>
-    
     <template #header>
-        
-      <link rel="stylesheet" type="text/css" href="../js/recursosDatatables/datatables.min.css"/> 
-      
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="../js/recursosDatatables/datatables.min.css"
+      />
+
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         Dashboard
       </h2>
@@ -14,7 +15,7 @@
     <template #body>
       <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <BotaoAdicionarProjeto/>
+          <BotaoAdicionarProjeto />
           <div
             class="bg-white overflow-hidden shadow-xl sm:rounded-sm ajustePadding"
           >
@@ -37,11 +38,17 @@
                   :key="dado.id"
                 >
                   <td>{{ dados[index].nome }}</td>
-                  <td>{{ formatarDataIncio(index)}}</td>
+                  <td>{{ formatarDataIncio(index) }}</td>
                   <td>{{ formatarDataFim(index) }}</td>
                   <td>{{ dados[index].valor }}</td>
                   <td>{{ dados[index].risco }}</td>
-                  <td>Editar / Excluir / Calcular Risco</td>
+                  <td>
+                    <button class="btn-acao editar">Editar</button>
+                    <button class="btn-acao excluir">Excluir</button>
+                    <button class="btn-acao sInvestimento">
+                      Simular investimento
+                    </button>
+                  </td>
                 </tr>
               </tbody>
               <tfoot>
@@ -63,14 +70,12 @@
 </template>
  
 <script>
-
-
 import AppLayout from "@/Layouts/AppLayout";
 import BotaoAdicionarProjeto from "@/Pages/components/BotaoAdicionarProjeto";
-var moment = require('moment');
+
+var moment = require("moment");
 
 export default {
-
   components: {
     AppLayout,
     BotaoAdicionarProjeto,
@@ -82,25 +87,22 @@ export default {
   data() {
     return {
       index: null,
-      data: this.dados
+      data: this.dados,
     };
   },
-  methods:{
-    formatarDataIncio(index){
-      let data_formatada =  this.data[index].data_inicio;
-      return moment(data_formatada).format("L"); 
+  methods: {
+    formatarDataIncio(index) {
+      let data_formatada = this.data[index].data_inicio;
+      return moment(data_formatada).format("L");
     },
-    formatarDataFim(index){
-      let data_formatada =  this.data[index].data_fim;
-      return moment(data_formatada).format("L"); 
-    }
-
-  }
+    formatarDataFim(index) {
+      let data_formatada = this.data[index].data_fim;
+      return moment(data_formatada).format("L");
+    },
+  },
 };
 
-
 $(document).ready(function () {
- 
   $("#listagem").DataTable({
     scrollY: true,
     scrollX: true,
@@ -123,5 +125,34 @@ $(document).ready(function () {
 <style  scoped>
 .ajustePadding {
   padding: 1rem;
+}
+
+.btn-acao {
+  width: 3.7rem;
+  text-align: center;
+  padding: 0.4rem 0.4rem;
+  border: 0.1rem solid white;
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  transition-duration: 0.8s;
+  outline: none;
+}
+
+.btn-acao:hover {
+  background-color: white;
+  border-color: black;
+  color: black;
+}
+
+.excluir {
+  background-color: rgb(199, 31, 53);
+}
+.editar {
+  background-color: rgb(31, 136, 136);
+}
+.sInvestimento {
+  background-color: rgb(1, 143, 13);
+  width: 8.5rem;
 }
 </style>

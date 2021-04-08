@@ -21744,7 +21744,13 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 /* HOISTED */
 );
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "Editar / Excluir / Calcular Risco", -1
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  "class": "btn-acao editar"
+}, "Editar"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  "class": "btn-acao excluir"
+}, "Excluir"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  "class": "btn-acao sInvestimento"
+}, " Simular investimento ")], -1
 /* HOISTED */
 );
 
@@ -23774,7 +23780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.ajustePadding[data-v-097ba13b] {\r\n  padding: 1rem;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.ajustePadding[data-v-097ba13b] {\r\n  padding: 1rem;\n}\n.btn-acao[data-v-097ba13b] {\r\n  width: 3.7rem;\r\n  text-align: center;\r\n  padding: 0.4rem 0.4rem;\r\n  border: 0.1rem solid white;\r\n  color: white;\r\n  border-radius: 0.5rem;\r\n  font-size: 0.8rem;\r\n  transition-duration: 0.8s;\r\n  outline: none;\n}\n.btn-acao[data-v-097ba13b]:hover {\r\n  background-color: white;\r\n  border-color: black;\r\n  color: black;\n}\n.excluir[data-v-097ba13b] {\r\n  background-color: rgb(199, 31, 53);\n}\n.editar[data-v-097ba13b] {\r\n  background-color: rgb(31, 136, 136);\n}\n.sInvestimento[data-v-097ba13b] {\r\n  background-color: rgb(1, 143, 13);\r\n  width: 8.5rem;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
