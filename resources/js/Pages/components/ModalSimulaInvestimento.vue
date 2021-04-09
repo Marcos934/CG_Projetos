@@ -86,6 +86,7 @@ export default {
         this.resultados = true
         this.valorSimulado = this.valor
         this.calculoRoi()
+        console.log("foi")
       }
     },
 
@@ -93,16 +94,16 @@ export default {
      calculoRoi(){
       let risco = this.infSimulacaoProjeto.risco;
       switch(risco){
-        case '0':
-            this.roi =  ((parseFloat(this.valor) * 0.05))
+        case 0:
+            this.roi =  ((parseFloat(this.valorSimulado) * 0.05))
             this.percentualRoi = 5
           break;
-        case '1':
-            this.roi =  ((parseFloat(this.valor) * 0.10))
+        case 1:
+            this.roi =  ((parseFloat(this.valorSimulado) * 0.10))
             this.percentualRoi = 10
           break;
-        case '2':
-            this.roi =  ((parseFloat(this.valor) * 0.20))
+        case 2:
+            this.roi =  ((parseFloat(this.valorSimulado) * 0.20))
             this.percentualRoi = 20
           break;
       }

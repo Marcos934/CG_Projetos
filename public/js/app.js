@@ -17929,9 +17929,8 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
     return {
       index: null,
       data: this.dados,
-      isModalMostrar: false,
       isModalSimula: false,
-      infSimulacaoProjeto: '123'
+      infSimulacaoProjeto: ''
     };
   },
   methods: {
@@ -17948,18 +17947,15 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
         this.$inertia["delete"]("/excluirProjeto/".concat(id_projeto), id_projeto);
       }
     },
-    abrirModal: function abrirModal() {
-      this.isModalMostrar = true;
-    },
-    fecharModal: function fecharModal() {
-      this.isModalMostrar = false;
-    },
     abrirModalSimula: function abrirModalSimula(dados) {
       this.isModalSimula = true;
       this.infSimulacaoProjeto = dados;
     },
     fecharModalSimula: function fecharModalSimula() {
       this.isModalSimula = false;
+    },
+    capturaId: function capturaId(dados) {
+      this.$inertia.post('/editar', dados);
     }
   }
 });
@@ -18663,24 +18659,25 @@ __webpack_require__.r(__webpack_exports__);
         this.resultados = true;
         this.valorSimulado = this.valor;
         this.calculoRoi();
+        console.log("foi");
       }
     },
     calculoRoi: function calculoRoi() {
       var risco = this.infSimulacaoProjeto.risco;
 
       switch (risco) {
-        case '0':
-          this.roi = parseFloat(this.valor) * 0.05;
+        case 0:
+          this.roi = parseFloat(this.valorSimulado) * 0.05;
           this.percentualRoi = 5;
           break;
 
-        case '1':
-          this.roi = parseFloat(this.valor) * 0.10;
+        case 1:
+          this.roi = parseFloat(this.valorSimulado) * 0.10;
           this.percentualRoi = 10;
           break;
 
-        case '2':
-          this.roi = parseFloat(this.valor) * 0.20;
+        case 2:
+          this.roi = parseFloat(this.valorSimulado) * 0.20;
           this.percentualRoi = 20;
           break;
       }
@@ -21839,8 +21836,6 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BotaoAdicionarProjeto = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BotaoAdicionarProjeto");
 
-  var _component_ModalFormProjeto = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ModalFormProjeto");
-
   var _component_ModalSimulaInvestimento = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ModalSimulaInvestimento");
 
   var _component_app_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-layout");
@@ -21863,12 +21858,18 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.dados[index].risco), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-          onClick: _cache[1] || (_cache[1] = function ($event) {
-            return $options.abrirModal();
-          }),
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+          onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+            return _ctx.submit && _ctx.submit.apply(_ctx, arguments);
+          }, ["prevent"]))
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+          onClick: function onClick($event) {
+            return $options.capturaId($props.dados[index]);
+          },
           "class": "btn-acao editar"
-        }, "Editar"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+        }, "Editar", 8
+        /* PROPS */
+        , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
           onClick: function onClick($event) {
             return $options.alertaExcluir($props.dados[index].nome, $props.dados[index].id_projeto);
           },
@@ -21882,16 +21883,14 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
           "class": "btn-acao sInvestimento"
         }, " Simular investimento ", 8
         /* PROPS */
-        , ["onClick"])])], 16
+        , ["onClick"])], 32
+        /* HYDRATE_EVENTS */
+        )], 16
         /* FULL_PROPS */
         );
       }), 128
       /* KEYED_FRAGMENT */
-      ))]), _hoisted_8])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ModalFormProjeto, {
-        onClose: $options.fecharModal
-      }, null, 8
-      /* PROPS */
-      , ["onClose"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isModalMostrar]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ModalSimulaInvestimento, {
+      ))]), _hoisted_8])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ModalSimulaInvestimento, {
         onClose: $options.fecharModalSimula,
         infSimulacaoProjeto: $data.infSimulacaoProjeto
       }, null, 8
@@ -23718,9 +23717,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-gray-100[data-v-317d1a6e] {\r\n  background-color: #f7fafc;\r\n  background-color: rgba(247, 250, 252, var(--tw-bg-opacity));\n}\n.border-gray-200[data-v-317d1a6e] {\r\n  border-color: #edf2f7;\r\n  border-color: rgba(237, 242, 247, var(--tw-border-opacity));\n}\n.text-gray-400[data-v-317d1a6e] {\r\n  color: #cbd5e0;\r\n  color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n.text-gray-500[data-v-317d1a6e] {\r\n  color: #a0aec0;\r\n  color: rgba(160, 174, 192, var(--tw-text-opacity));\n}\n.text-gray-600[data-v-317d1a6e] {\r\n  color: #718096;\r\n  color: rgba(113, 128, 150, var(--tw-text-opacity));\n}\n.text-gray-700[data-v-317d1a6e] {\r\n  color: #4a5568;\r\n  color: rgba(74, 85, 104, var(--tw-text-opacity));\n}\n.text-gray-900[data-v-317d1a6e] {\r\n  color: #1a202c;\r\n  color: rgba(26, 32, 44, var(--tw-text-opacity));\n}\n@media (prefers-color-scheme: dark) {\n.dark\\:bg-gray-800[data-v-317d1a6e] {\r\n    background-color: #2d3748;\r\n    background-color: rgba(45, 55, 72, var(--tw-bg-opacity));\n}\n.dark\\:bg-gray-900[data-v-317d1a6e] {\r\n    background-color: #1a202c;\r\n    background-color: rgba(26, 32, 44, var(--tw-bg-opacity));\n}\n.dark\\:border-gray-700[data-v-317d1a6e] {\r\n    border-color: #4a5568;\r\n    border-color: rgba(74, 85, 104, var(--tw-border-opacity));\n}\n.dark\\:text-white[data-v-317d1a6e] {\r\n    color: #fff;\r\n    color: rgba(255, 255, 255, var(--tw-text-opacity));\n}\n.dark\\:text-gray-400[data-v-317d1a6e] {\r\n    color: #cbd5e0;\r\n    color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n}\n.bt_login[data-v-317d1a6e]{\r\n    \r\n    width: 8rem;\r\n    text-align: center;\r\n    padding: 0.5rem 0.3rem;\r\n    border: 0.1rem solid white;\r\n    color: white;\r\n    border-radius: 0.5rem;\r\n    background-color:#6875F5;\r\n    font-size: 1rem;\r\n    transition-duration: 0.5s;\r\n    margin-left: 0.5rem;\r\n    outline: none;\r\n    margin-bottom: 1rem;\n}\n.bt_login[data-v-317d1a6e]:hover{\r\n    background-color:#3b4bda;\r\n    outline: none;\n}\r\n\r\n\r\n\r\n", ""]);
-
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

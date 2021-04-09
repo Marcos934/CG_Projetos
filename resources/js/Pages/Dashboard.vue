@@ -42,8 +42,10 @@
                   <td>{{ formatarDataFim(index) }}</td>
                   <td>{{ dados[index].valor }}</td>
                   <td>{{ dados[index].risco }}</td>
-                  <td>
-                    <button @click="abrirModal()" class="btn-acao editar">Editar</button>
+                  <td @submit.prevent="submit">
+                   
+                     <button @click="capturaId(dados[index])" class="btn-acao editar">Editar</button>
+                  
                     <button @click="alertaExcluir(dados[index].nome,  dados[index].id_projeto)" class="btn-acao excluir">Excluir</button>
                     <button @click="abrirModalSimula(dados[index])"  class="btn-acao sInvestimento">
                       Simular investimento
@@ -66,11 +68,7 @@
         </div>
       </div>
 
- <ModalFormProjeto
-      v-show="isModalMostrar"
-      @close="fecharModal"
-    />
-      
+ 
 <ModalSimulaInvestimento
  
       v-show="isModalSimula"
@@ -102,9 +100,8 @@ export default {
     return {
       index: null,
       data: this.dados,
-      isModalMostrar: false,
       isModalSimula: false,
-      infSimulacaoProjeto: '123',
+      infSimulacaoProjeto: '',
     };
   },
   methods: {
@@ -124,12 +121,7 @@ export default {
        }
       
     },
-     abrirModal() {
-        this.isModalMostrar= true
-      },
-      fecharModal() {
-      this.isModalMostrar = false
-      },
+  
       abrirModalSimula(dados) {
         this.isModalSimula= true
         this.infSimulacaoProjeto = dados
@@ -138,6 +130,10 @@ export default {
       fecharModalSimula() {
       this.isModalSimula = false
       },
+
+      capturaId(dados){
+         this.$inertia.post('/editar', dados)
+      }
      
   },
 };
